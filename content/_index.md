@@ -18,3 +18,7 @@ Storie epiche, produzione cinematografica e ospiti d'eccezione.
 ---
 
 ### Presto per le vostre orecchie
+
+---
+
+**[Iscriviti al canale YouTube](https://www.youtube.com/@Cuorpugnale)**
