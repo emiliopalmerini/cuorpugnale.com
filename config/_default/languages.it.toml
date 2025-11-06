@@ -9,14 +9,14 @@ title = "Cuorpugnale"
   isoCode = "it"
   rtl = false
   dateFormat = "2 January 2006"
-  # logo = "img/logo.png"
+  logo = "img/Daggerheart_logo_2025.png"
   # secondaryLogo = "img/secondary-logo.png"
   description = "CUORPUGNALE"
   # copyright = "Copy, _right?_ :thinking_face:"
 
 [params.author]
   name = "Cuorpugnale"
-  headline = "CUORPUGNALE"
+  headline = "Un podcast ideato da Walid Husein e Gianluca Danaro"
   links = [
     { youtube = "https://www.youtube.com/@Cuorpugnale" },
     { link = "https://acheron.it" },

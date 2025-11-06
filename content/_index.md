@@ -1,13 +1,10 @@
 ---
 title: "Cuorpugnale"
 description: "Un podcast ideato da Walid Husein e Gianluca Danaro"
+heroImage: "img/Daggerheaert-Core-Mat-Wilma-1_small.jpg"
 ---
 
-## Un podcast ideato da Walid Husein e Gianluca Danaro
-
----
-
-**Cuorpugnale** è un podcast actual play che utilizza il gioco di ruolo **Daggerheart** per introdurre il pubblico al suo innovativo game design e intrattenere raccontando avventure e storie fantastiche.
+Un podcast actual play che utilizza il gioco di ruolo **Daggerheart** per introdurre il pubblico al suo innovativo game design e intrattenere raccontando avventure e storie fantastiche.
 
 Storie epiche, produzione cinematografica e ospiti d'eccezione.
 
