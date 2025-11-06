@@ -3,8 +3,6 @@ title: "Cuorpugnale"
 description: "Un podcast ideato da Walid Husein e Gianluca Danaro"
 ---
 
-# Cuorpugnale
-
 ## Un podcast ideato da Walid Husein e Gianluca Danaro
 
 ---
