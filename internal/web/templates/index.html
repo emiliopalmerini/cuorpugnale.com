@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cuorpugnale — Actual Play Daggerheart</title>
+  <meta name="description" content="Un podcast actual play di Walid Husein e Gianluca Danaro che usa Daggerheart per raccontare storie epiche." />
+  <meta property="og:title" content="Cuorpugnale" />
+  <meta property="og:description" content="L'actual play come non l'avete mai sentito." />
+  <meta property="og:image" content="/static/img/Daggerheaert-Core-Mat-Wilma-1_small.jpg" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/png" href="/static/img/Daggerheart_logo_2025.png" />
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <script src="https://unpkg.com/htmx.org@2.0.4" defer></script>
+</head>
+<body>
+  <main class="hero">
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <img class="hero__logo" src="/static/img/Daggerheart_logo_2025.png" alt="Daggerheart" />
+      <h1 class="hero__title">Cuorpugnale</h1>
+      <p class="hero__tagline">Un podcast actual play di Walid Husein e Gianluca Danaro</p>
+      <p class="hero__lede">
+        Storie epiche, produzione cinematografica e ospiti d'eccezione,
+        raccontate attraverso il game design innovativo di
+        <strong>Daggerheart</strong>.
+      </p>
+      <p class="hero__claim"><em>L'actual play come non l'avete mai sentito.</em></p>
+
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="https://www.youtube.com/@Cuorpugnale" target="_blank" rel="noopener">
+          Iscriviti su YouTube
+        </a>
+        <button class="btn btn--ghost"
+                hx-get="/partials/notify"
+                hx-target="#notify-slot"
+                hx-swap="outerHTML">
+          Avvisami al lancio
+        </button>
+      </div>
+
+      <div id="notify-slot" class="hero__notify"></div>
+
+      <p class="hero__footer">Presto per le vostre orecchie.</p>
+    </div>
+  </main>
+</body>
+</html>

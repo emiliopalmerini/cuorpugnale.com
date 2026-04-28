@@ -1,0 +1,160 @@
+:root {
+  --bg: #0b0a0f;
+  --ink: #f4ecd8;
+  --ink-dim: #c9bfa6;
+  --accent: #c9a14a;
+  --accent-hot: #e8b94f;
+  --shadow: rgba(0, 0, 0, 0.7);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: 18px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent-hot); text-decoration: none; }
+a:hover { color: var(--ink); }
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1.5rem;
+  background-image: url("/static/img/Daggerheaert-Core-Mat-Wilma-1_small.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center, rgba(11, 10, 15, 0.55) 0%, rgba(11, 10, 15, 0.92) 80%),
+    linear-gradient(180deg, rgba(11, 10, 15, 0.4) 0%, rgba(11, 10, 15, 0.85) 100%);
+  pointer-events: none;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  text-align: center;
+  text-shadow: 0 2px 12px var(--shadow);
+}
+
+.hero__logo {
+  width: 160px;
+  max-width: 60vw;
+  height: auto;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.6));
+}
+
+.hero__title {
+  font-size: clamp(2.8rem, 8vw, 5rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: 0.02em;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.hero__tagline {
+  margin: 0 0 1.5rem;
+  font-style: italic;
+  color: var(--ink-dim);
+  font-size: 1.05rem;
+}
+
+.hero__lede {
+  margin: 0 auto 1rem;
+  max-width: 36rem;
+}
+
+.hero__lede strong {
+  color: var(--accent-hot);
+  font-weight: 600;
+}
+
+.hero__claim {
+  margin: 0 0 2.25rem;
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+
+.hero__cta {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.85rem 1.6rem;
+  border-radius: 2px;
+  font: inherit;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: 1px solid var(--accent);
+  transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.btn:hover { transform: translateY(-1px); }
+
+.btn--primary {
+  background: var(--accent);
+  color: #1a1308;
+}
+.btn--primary:hover { background: var(--accent-hot); color: #1a1308; }
+
+.btn--ghost {
+  background: transparent;
+  color: var(--ink);
+}
+.btn--ghost:hover { background: rgba(201, 161, 74, 0.12); color: var(--ink); }
+
+.hero__notify {
+  min-height: 1rem;
+  max-width: 32rem;
+  margin: 0 auto;
+}
+
+.hero__notify--shown {
+  margin-top: 1rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid rgba(201, 161, 74, 0.35);
+  background: rgba(11, 10, 15, 0.5);
+  border-radius: 4px;
+  font-size: 0.95rem;
+  color: var(--ink-dim);
+}
+
+.hero__footer {
+  margin-top: 2.5rem;
+  font-size: 0.85rem;
+  color: var(--ink-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+  .hero { background-attachment: scroll; padding: 3rem 1rem; }
+  .btn { width: 100%; }
+}

@@ -1,0 +1,21 @@
+.git
+.github
+.gitignore
+.gitmodules
+.vscode
+.idea
+README.md
+Makefile
+docker-compose.yml
+Dockerfile
+
+# Hugo leftovers (until removed)
+archetypes
+assets
+config
+content
+static
+themes
+public
+resources
+.hugo_build.lock

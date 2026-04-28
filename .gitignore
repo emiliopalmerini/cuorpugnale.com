@@ -3,6 +3,10 @@ public/
 resources/_gen/
 .hugo_build.lock
 
+# Go
+bin/
+*.out
+
 # macOS
 .DS_Store
 
