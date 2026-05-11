@@ -22,6 +22,9 @@
 
 * { box-sizing: border-box; }
 
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
 html, body {
   margin: 0;
   padding: 0;
@@ -207,6 +210,38 @@ a:hover { color: var(--ink); }
   .hero { padding: clamp(180px, 48vw, 280px) 1rem 3rem; }
   .btn { width: 100%; }
   .countdown__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.hero__scroll {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: var(--accent-hot);
+  background: rgba(46, 20, 102, 0.35);
+  border: 1px solid rgba(235, 164, 2, 0.4);
+  animation: hero-bounce 1.8s ease-in-out infinite;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.hero__scroll:hover {
+  color: var(--ink);
+  background: rgba(235, 164, 2, 0.2);
+}
+
+@keyframes hero-bounce {
+  0%, 100% { transform: translate(-50%, 0); }
+  50%      { transform: translate(-50%, 8px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__scroll { animation: none; }
 }
 
 .about {
