@@ -6,7 +6,7 @@
   --accent: #eba402;
   --accent-hot: #ffbf2e;
   --shadow: rgba(0, 0, 0, 0.5);
-  --font-display: "DM Serif Display", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   --font-body: "Lora", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
 }
 
@@ -39,7 +39,12 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing: 0.01em; }
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  font-variation-settings: "opsz" 96, "SOFT" 30, "WONK" 1;
+}
 
 a { color: var(--accent-hot); text-decoration: none; }
 a:hover { color: var(--ink); }
