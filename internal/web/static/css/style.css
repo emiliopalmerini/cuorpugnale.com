@@ -292,3 +292,18 @@ a:hover { color: var(--ink); }
 @media (min-width: 960px) {
   .about__grid { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
 }
+
+.site-footer {
+  padding: 1.5rem 1rem;
+  background: var(--bg-deep);
+  border-top: 1px solid rgba(235, 164, 2, 0.18);
+  text-align: center;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-dim);
+}
+
+.site-footer p { margin: 0; }
+.site-footer span[aria-label="love"] { color: var(--accent-hot); }
+.site-footer a { color: var(--ink); border-bottom: 1px dotted rgba(235, 164, 2, 0.5); }
+.site-footer a:hover { color: var(--accent-hot); }
