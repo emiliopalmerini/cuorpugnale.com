@@ -7,9 +7,9 @@
   <meta name="description" content="Un podcast actual play di Walid Husein e Gianluca Danaro che usa Daggerheart per raccontare storie epiche." />
   <meta property="og:title" content="Cuorpugnale" />
   <meta property="og:description" content="L'actual play come non l'avete mai sentito." />
-  <meta property="og:image" content="/static/img/Daggerheaert-Core-Mat-Wilma-1_small.jpg" />
+  <meta property="og:image" content="/static/img/cuorpugnale_logotipo.jpg" />
   <meta property="og:type" content="website" />
-  <link rel="icon" type="image/png" href="/static/img/Daggerheart_logo_2025.png" />
+  <link rel="icon" type="image/svg+xml" href="/static/img/cuorpugnale_marchio.svg" />
   <link rel="stylesheet" href="/static/css/style.css" />
   <script src="https://unpkg.com/htmx.org@2.0.4" defer></script>
 </head>
@@ -17,8 +17,7 @@
   <main class="hero">
     <div class="hero__overlay"></div>
     <div class="hero__content">
-      <img class="hero__logo" src="/static/img/Daggerheart_logo_2025.png" alt="Daggerheart" />
-      <h1 class="hero__title">Cuorpugnale</h1>
+      <h1 class="visually-hidden">Cuorpugnale — Actual Play</h1>
       <p class="hero__tagline">Un podcast actual play di Walid Husein e Gianluca Danaro</p>
       <p class="hero__lede">
         Storie epiche, produzione cinematografica e ospiti d'eccezione,
@@ -28,12 +27,55 @@
       <p class="hero__claim"><em>L'actual play come non l'avete mai sentito.</em></p>
 
       <div class="hero__cta">
-        <a class="btn btn--primary" href="https://www.youtube.com/@Cuorpugnale" target="_blank" rel="noopener">
-          Iscriviti su YouTube
-        </a>
-        <a class="btn btn--ghost" href="#" target="_blank" rel="noopener">
-          Ascolta su Spotify
-        </a>
+        {{if .Launched}}
+          {{if .SpotifyEmbed}}
+            <iframe class="hero__spotify"
+                    src="{{.SpotifyEmbed}}"
+                    width="100%" height="232"
+                    frameborder="0" allowtransparency="true"
+                    allow="encrypted-media"
+                    loading="lazy"></iframe>
+          {{else}}
+            <a class="btn btn--primary" href="#" target="_blank" rel="noopener">
+              Ascolta il trailer su Spotify
+            </a>
+          {{end}}
+        {{else}}
+          <div class="countdown" data-target="{{.LaunchUnixMs}}" aria-live="polite">
+            <p class="countdown__label">Il trailer arriva tra</p>
+            <div class="countdown__grid">
+              <div class="countdown__cell"><span class="countdown__num" data-unit="days">--</span><span class="countdown__unit">giorni</span></div>
+              <div class="countdown__cell"><span class="countdown__num" data-unit="hours">--</span><span class="countdown__unit">ore</span></div>
+              <div class="countdown__cell"><span class="countdown__num" data-unit="minutes">--</span><span class="countdown__unit">min</span></div>
+              <div class="countdown__cell"><span class="countdown__num" data-unit="seconds">--</span><span class="countdown__unit">sec</span></div>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('.countdown');
+            if (!root) return;
+            var target = parseInt(root.dataset.target, 10);
+            var fields = {
+              days: root.querySelector('[data-unit="days"]'),
+              hours: root.querySelector('[data-unit="hours"]'),
+              minutes: root.querySelector('[data-unit="minutes"]'),
+              seconds: root.querySelector('[data-unit="seconds"]')
+            };
+            function pad(n) { return n < 10 ? '0' + n : '' + n; }
+            function tick() {
+              var diff = target - Date.now();
+              if (diff <= 0) { location.reload(); return; }
+              var s = Math.floor(diff / 1000);
+              fields.days.textContent = Math.floor(s / 86400);
+              fields.hours.textContent = pad(Math.floor((s % 86400) / 3600));
+              fields.minutes.textContent = pad(Math.floor((s % 3600) / 60));
+              fields.seconds.textContent = pad(s % 60);
+            }
+            tick();
+            setInterval(tick, 1000);
+          })();
+          </script>
+        {{end}}
       </div>
 
       <p class="hero__footer">Presto per le vostre orecchie.</p>
