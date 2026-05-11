@@ -6,6 +6,8 @@
   --accent: #eba402;
   --accent-hot: #ffbf2e;
   --shadow: rgba(0, 0, 0, 0.5);
+  --font-display: "DM Serif Display", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-body: "Lora", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
 }
 
 .visually-hidden {
@@ -31,11 +33,13 @@ html, body {
   min-height: 100%;
   background: var(--bg);
   color: var(--ink);
-  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-family: var(--font-body);
   font-size: 18px;
-  line-height: 1.55;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
+
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing: 0.01em; }
 
 a { color: var(--accent-hot); text-decoration: none; }
 a:hover { color: var(--ink); }
