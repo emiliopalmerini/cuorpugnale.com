@@ -327,6 +327,26 @@ a:hover { color: var(--ink); }
   font-size: 0.95rem;
 }
 
+.person__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem 0 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.person__links a {
+  color: var(--ink);
+  border-bottom: 1px dotted rgba(235, 164, 2, 0.5);
+}
+
+.person__links a:hover {
+  color: var(--accent-hot);
+}
+
 @media (min-width: 600px) {
   .about { padding: 4rem 1.5rem; }
   .about__grid { grid-template-columns: repeat(2, 1fr); gap: 1.75rem; }
