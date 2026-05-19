@@ -1,5 +1,5 @@
 :root {
-  --bg: #4921a0;
+  --bg: #4920a0;
   --bg-deep: #2e1466;
   --ink: #f4ecd8;
   --ink-dim: #d8c9a6;
@@ -85,8 +85,6 @@ iframe:focus-visible {
 .hero__overlay {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse at center 70%, rgba(73, 33, 160, 0) 0%, rgba(46, 20, 102, 0.5) 90%);
   pointer-events: none;
 }
 
@@ -103,6 +101,7 @@ iframe:focus-visible {
   width: min(92vw, 880px);
   height: auto;
   margin: 0 auto clamp(1.5rem, 4vw, 2.5rem);
+  transform: translateX(-1.6%);
 }
 
 .hero__title {
