@@ -1,185 +1,324 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cuorpugnale — Actual Play Daggerheart</title>
-  <meta name="description" content="Un podcast actual play di Walid Husein e Gianluca Danaro che usa Daggerheart per raccontare storie epiche." />
-  <meta property="og:title" content="Cuorpugnale" />
-  <meta property="og:description" content="L'actual play come non l'avete mai sentito." />
-  <meta property="og:image" content="/static/img/cuorpugnale_logotipo.jpg" />
-  <meta property="og:type" content="website" />
-  <link rel="icon" type="image/svg+xml" href="/static/img/cuorpugnale_marchio.svg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Lora:ital,wght@0,400..600;1,400..600&display=swap" />
-  <link rel="stylesheet" href="/static/css/style.css" />
-  <script src="https://unpkg.com/htmx.org@2.0.4" defer></script>
-</head>
-<body>
-  <main class="hero">
-    <div class="hero__overlay"></div>
-    <div class="hero__content">
-      <h1 class="visually-hidden">Cuorpugnale — Actual Play</h1>
-      <p class="hero__tagline">Un podcast actual play di Walid Husein e Gianluca Danaro</p>
-      <p class="hero__lede">
-        Storie epiche, produzione cinematografica e ospiti d'eccezione,
-        raccontate attraverso il game design innovativo di
-        <strong>Daggerheart</strong>.
-      </p>
-      <p class="hero__claim"><em>L'actual play come non l'avete mai sentito.</em></p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cuorpugnale l'Actual Play Daggerheart</title>
+    <meta
+      name="description"
+      content="Un podcast actual play di Walid Husein e Gianluca Danaro che usa Daggerheart per raccontare storie epiche."
+    />
+    <link rel="canonical" href="{{.SiteURL}}/" />
+    <meta property="og:title" content="Cuorpugnale" />
+    <meta
+      property="og:description"
+      content="L'actual play come non l'avete mai sentito."
+    />
+    <meta property="og:image" content="{{.OGImageURL}}" />
+    <meta property="og:image:alt" content="Logo di Cuorpugnale" />
+    <meta property="og:locale" content="it_IT" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{.SiteURL}}/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Cuorpugnale" />
+    <meta
+      name="twitter:description"
+      content="L'actual play come non l'avete mai sentito."
+    />
+    <meta name="twitter:image" content="{{.OGImageURL}}" />
+    <meta name="twitter:image:alt" content="Logo di Cuorpugnale" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/static/img/cuorpugnale_marchio.svg"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Lora:ital,wght@0,400..600;1,400..600&display=swap"
+    />
+    <link rel="stylesheet" href="/static/css/style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#chi-siamo">Vai al contenuto</a>
+    <main class="hero" aria-labelledby="page-title">
+      <div class="hero__overlay"></div>
+      <div class="hero__content">
+        <img
+          class="hero__brand"
+          src="/static/img/cuorpugnale_logotipo.jpg"
+          alt="Cuorpugnale"
+          width="880"
+          height="495"
+          fetchpriority="high"
+        />
+        <h1 id="page-title" class="visually-hidden">
+          Cuorpugnale - Actual Play
+        </h1>
+        <p class="hero__tagline">
+          Un podcast actual play di Walid Husein e Gianluca Danaro
+        </p>
+        <p class="hero__lede">
+          Una campagna scritta con il cuore, registrata al tavolo e giocata con
+          il nuovo sistema di
+          <strong>Daggerheart</strong>.
+        </p>
+        <p class="hero__claim">
+          <em>Un nuovo actual play dal suono fantastico</em>
+        </p>
 
-      <div class="hero__cta">
-        {{if .Launched}}
-          {{if .SpotifyEmbed}}
-            <iframe class="hero__spotify"
-                    src="{{.SpotifyEmbed}}"
-                    width="100%" height="232"
-                    frameborder="0" allowtransparency="true"
-                    allow="encrypted-media"
-                    loading="lazy"></iframe>
+        <div class="hero__cta">
+          {{if .Launched}} {{if .SpotifyEmbed}}
+          <iframe
+            class="hero__spotify"
+            title="Trailer di Cuorpugnale su Spotify"
+            src="{{.SpotifyEmbed}}"
+            width="100%"
+            height="232"
+            allow="encrypted-media"
+            loading="lazy"
+          ></iframe>
           {{else}}
-            <a class="btn btn--primary" href="#" target="_blank" rel="noopener">
-              Ascolta il trailer su Spotify
-            </a>
-          {{end}}
-        {{else}}
-          <div class="countdown" data-target="{{.LaunchUnixMs}}" aria-live="polite">
+          <a
+            class="btn btn--primary"
+            href="{{.SpotifyURL}}"
+            target="_blank"
+            rel="noopener"
+          >
+            Apri Cuorpugnale su Spotify
+          </a>
+          {{end}} {{else}}
+          <div
+            class="countdown"
+            data-target="{{.LaunchUnixMs}}"
+            aria-label="Tempo rimanente al trailer"
+            aria-live="off"
+            role="timer"
+          >
             <p class="countdown__label">Il trailer arriva tra</p>
             <div class="countdown__grid">
-              <div class="countdown__cell"><span class="countdown__num" data-unit="days">--</span><span class="countdown__unit">giorni</span></div>
-              <div class="countdown__cell"><span class="countdown__num" data-unit="hours">--</span><span class="countdown__unit">ore</span></div>
-              <div class="countdown__cell"><span class="countdown__num" data-unit="minutes">--</span><span class="countdown__unit">min</span></div>
-              <div class="countdown__cell"><span class="countdown__num" data-unit="seconds">--</span><span class="countdown__unit">sec</span></div>
+              <div class="countdown__cell">
+                <span class="countdown__num" data-unit="days">--</span
+                ><span class="countdown__unit">giorni</span>
+              </div>
+              <div class="countdown__cell">
+                <span class="countdown__num" data-unit="hours">--</span
+                ><span class="countdown__unit">ore</span>
+              </div>
+              <div class="countdown__cell">
+                <span class="countdown__num" data-unit="minutes">--</span
+                ><span class="countdown__unit">min</span>
+              </div>
+              <div class="countdown__cell">
+                <span class="countdown__num" data-unit="seconds">--</span
+                ><span class="countdown__unit">sec</span>
+              </div>
             </div>
           </div>
           <script>
-          (function () {
-            var root = document.querySelector('.countdown');
-            if (!root) return;
-            var target = parseInt(root.dataset.target, 10);
-            var fields = {
-              days: root.querySelector('[data-unit="days"]'),
-              hours: root.querySelector('[data-unit="hours"]'),
-              minutes: root.querySelector('[data-unit="minutes"]'),
-              seconds: root.querySelector('[data-unit="seconds"]')
-            };
-            function pad(n) { return n < 10 ? '0' + n : '' + n; }
-            function tick() {
-              var diff = target - Date.now();
-              if (diff <= 0) { location.reload(); return; }
-              var s = Math.floor(diff / 1000);
-              fields.days.textContent = Math.floor(s / 86400);
-              fields.hours.textContent = pad(Math.floor((s % 86400) / 3600));
-              fields.minutes.textContent = pad(Math.floor((s % 3600) / 60));
-              fields.seconds.textContent = pad(s % 60);
-            }
-            tick();
-            setInterval(tick, 1000);
-          })();
+            (function () {
+              var root = document.querySelector(".countdown");
+              if (!root) return;
+              var target = parseInt(root.dataset.target, 10);
+              var fields = {
+                days: root.querySelector('[data-unit="days"]'),
+                hours: root.querySelector('[data-unit="hours"]'),
+                minutes: root.querySelector('[data-unit="minutes"]'),
+                seconds: root.querySelector('[data-unit="seconds"]'),
+              };
+              function pad(n) {
+                return n < 10 ? "0" + n : "" + n;
+              }
+              function tick() {
+                var diff = target - Date.now();
+                if (diff <= 0) {
+                  location.reload();
+                  return;
+                }
+                var s = Math.floor(diff / 1000);
+                fields.days.textContent = Math.floor(s / 86400);
+                fields.hours.textContent = pad(Math.floor((s % 86400) / 3600));
+                fields.minutes.textContent = pad(Math.floor((s % 3600) / 60));
+                fields.seconds.textContent = pad(s % 60);
+              }
+              tick();
+              setInterval(tick, 1000);
+            })();
           </script>
-        {{end}}
+          {{end}}
+        </div>
+
+        <p class="hero__footer">Presto per le vostre orecchie.</p>
       </div>
+      <a
+        class="hero__scroll"
+        href="#chi-siamo"
+        aria-label="Scorri verso Chi siamo"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          width="28"
+          height="28"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <path
+            d="M6 9l6 6 6-6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </a>
+    </main>
 
-      <p class="hero__footer">Presto per le vostre orecchie.</p>
-    </div>
-    <a class="hero__scroll" href="#chi-siamo" aria-label="Scorri verso Chi siamo">
-      <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" focusable="false">
-        <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </a>
-  </main>
+    <section class="about" id="chi-siamo">
+      <div class="about__inner">
+        <h2 class="about__title">Chi siamo</h2>
+        <p class="about__lede">
+          Le voci, le menti e le mani dietro Cuorpugnale.
+        </p>
 
-  <section class="about" id="chi-siamo">
-    <div class="about__inner">
-      <h2 class="about__title">Chi siamo</h2>
-      <p class="about__lede">Le voci, le menti e le mani dietro Cuorpugnale.</p>
+        <ul class="about__grid">
+          <li class="person">
+            <div class="person__photo" aria-hidden="true"></div>
+            <h3 class="person__name">Denise "Malloy" Venanzetti</h3>
+            <p class="person__role">Gestione pagina Instagram</p>
+            <p class="person__bio">
+              Traduttrice di giochi da tavolo, fumetti e giochi di ruolo. Fiore
+              all'occhiello: creditata sul <em>Manuale del Giocatore</em> (2014)
+              della 5ª edizione di <em>Dungeons &amp; Dragons</em>. E faccio un
+              ramen davvero niente male.
+            </p>
+            <p class="person__links">
+              <a
+                href="https://www.instagram.com/denisemalloy/"
+                target="_blank"
+                rel="noopener"
+                >Instagram</a
+              >
+            </p>
+          </li>
+          <li class="person">
+            <div class="person__photo" aria-hidden="true"></div>
+            <h3 class="person__name">Federica "Fede" Passi</h3>
+            <p class="person__role">Giocatrice, aiuto editing</p>
+            <p class="person__bio">
+              Grande appassionata di giochi da tavolo, di ruolo, di carte e di
+              qualsiasi cosa che possa essere anche solo lontanamente nerd. Vado
+              pazza per le rane muschio.
+            </p>
+            <p class="person__links">
+              <a
+                href="https://www.instagram.com/federica_passi/"
+                target="_blank"
+                rel="noopener"
+                >Instagram</a
+              >
+            </p>
+          </li>
+          <li class="person">
+            <div class="person__photo" aria-hidden="true"></div>
+            <h3 class="person__name">Gianluca "Gian" Danaro</h3>
+            <p class="person__role">
+              Musicista, compositore, editor, giocatore, ideatore del progetto
+            </p>
+            <p class="person__bio">
+              Credo di essere diventato un musicista a 7 anni, dopo aver visto
+              <em>Indiana Jones e il tempio maledetto</em> e aver sentito per la
+              prima volta la musica di John Williams. Ho una passione abbastanza
+              intrusiva per la narrazione e lo storytelling in tutte le sue
+              forme. Mi piacciono molto i procioni.
+            </p>
+            <p class="person__links">
+              <a
+                href="https://www.instagram.com/supernova_collective/"
+                target="_blank"
+                rel="noopener"
+                >Instagram</a
+              >
+            </p>
+          </li>
+          <li class="person">
+            <div class="person__photo" aria-hidden="true"></div>
+            <h3 class="person__name">
+              Lorenzo "Maga (Make Amaro Great Again)" Magalotti
+            </h3>
+            <p class="person__role">
+              Direttore artistico, illustratore, giocatore, Time Master
+            </p>
+            <p class="person__bio">
+              Fumettista, creatore della serie battle-shonen <em>Qwest!</em> per
+              Edizioni BD, illustratore di <em>Fabula Ultima</em> per Need
+              Games! e sceneggiatore di fumetti per The Walt Disney Company.
+              Sceglitore del finale di Maelle in
+              <em>Clair Obscur: Expedition 33</em>. "È tardiiii,
+              registriamoooo!"
+            </p>
+            <p class="person__links">
+              <a
+                href="https://www.instagram.com/maestroananasso/"
+                target="_blank"
+                rel="noopener"
+                >Instagram</a
+              >
+              <a
+                href="https://linktr.ee/LMagalotti"
+                target="_blank"
+                rel="noopener"
+                >Linktree</a
+              >
+            </p>
+          </li>
+          <li class="person">
+            <div class="person__photo" aria-hidden="true"></div>
+            <h3 class="person__name">Lorenzo "Amaro" Morelli</h3>
+            <p class="person__role">Graphic designer e illustratore</p>
+            <p class="person__bio">
+              Designer e illustratore italiano attivo tra branding, packaging e
+              art department nel cinema. Tra i progetti più rilevanti: il
+              restyling del packaging di Simmenthal, il lavoro come graphic
+              designer per il film Netflix <em>Il Falsario</em> e la copertina
+              di <em>Taxi sulla Luna</em> di Tony Effe.
+            </p>
+            <p class="person__links">
+              <a
+                href="https://www.instagram.com/amaro666_/"
+                target="_blank"
+                rel="noopener"
+                >Instagram</a
+              >
+              <a
+                href="https://www.instagram.com/carammello.design/"
+                target="_blank"
+                rel="noopener"
+                >Carammello Design</a
+              >
+            </p>
+          </li>
+          <li class="person">
+            <div class="person__photo" aria-hidden="true"></div>
+            <h3 class="person__name">Walid Husein</h3>
+            <p class="person__role">Ruolo</p>
+            <p class="person__bio">Bio in arrivo.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-      <ul class="about__grid">
-        <li class="person">
-          <div class="person__photo" aria-hidden="true"></div>
-          <h3 class="person__name">Denise "Malloy" Venanzetti</h3>
-          <p class="person__role">Gestione pagina Instagram</p>
-          <p class="person__bio">
-            Traduttrice di giochi da tavolo, fumetti e giochi di ruolo. Fiore all'occhiello:
-            creditata sul <em>Manuale del Giocatore</em> (2014) della 5ª edizione di
-            <em>Dungeons &amp; Dragons</em>. E faccio un ramen davvero niente male.
-          </p>
-          <p class="person__links">
-            <a href="https://www.instagram.com/denisemalloy/" target="_blank" rel="noopener">Instagram</a>
-          </p>
-        </li>
-        <li class="person">
-          <div class="person__photo" aria-hidden="true"></div>
-          <h3 class="person__name">Federica "Fede" Passi</h3>
-          <p class="person__role">Giocatrice, aiuto editing</p>
-          <p class="person__bio">
-            Grande appassionata di giochi da tavolo, di ruolo, di carte e di qualsiasi
-            cosa che possa essere anche solo lontanamente nerd. Vado pazza per le rane muschio.
-          </p>
-          <p class="person__links">
-            <a href="https://www.instagram.com/federica_passi/" target="_blank" rel="noopener">Instagram</a>
-          </p>
-        </li>
-        <li class="person">
-          <div class="person__photo" aria-hidden="true"></div>
-          <h3 class="person__name">Gianluca "Gian" Danaro</h3>
-          <p class="person__role">Musicista, compositore, editor, giocatore, ideatore del progetto</p>
-          <p class="person__bio">
-            Credo di essere diventato un musicista a 7 anni, dopo aver visto
-            <em>Indiana Jones e il tempio maledetto</em> e aver sentito per la prima volta
-            la musica di John Williams. Ho una passione abbastanza intrusiva per la
-            narrazione e lo storytelling in tutte le sue forme. Mi piacciono molto i procioni.
-          </p>
-          <p class="person__links">
-            <a href="https://www.instagram.com/supernova_collective/" target="_blank" rel="noopener">Instagram</a>
-          </p>
-        </li>
-        <li class="person">
-          <div class="person__photo" aria-hidden="true"></div>
-          <h3 class="person__name">Lorenzo "Maga (Make Amaro Great Again)" Magalotti</h3>
-          <p class="person__role">Direttore artistico, illustratore, giocatore, Time Master</p>
-          <p class="person__bio">
-            Fumettista, creatore della serie battle-shonen <em>Qwest!</em> per Edizioni BD,
-            illustratore di <em>Fabula Ultima</em> per Need Games! e sceneggiatore di fumetti
-            per The Walt Disney Company. Sceglitore del finale di Maelle in
-            <em>Clair Obscur: Expedition 33</em>. "È tardiiii, registriamoooo!"
-          </p>
-          <p class="person__links">
-            <a href="https://www.instagram.com/maestroananasso/" target="_blank" rel="noopener">Instagram</a>
-            <a href="https://linktr.ee/LMagalotti" target="_blank" rel="noopener">Linktree</a>
-          </p>
-        </li>
-        <li class="person">
-          <div class="person__photo" aria-hidden="true"></div>
-          <h3 class="person__name">Lorenzo "Amaro" Morelli</h3>
-          <p class="person__role">Graphic designer e illustratore</p>
-          <p class="person__bio">
-            Designer e illustratore italiano attivo tra branding, packaging e art department
-            nel cinema. Tra i progetti più rilevanti: il restyling del packaging di
-            Simmenthal, il lavoro come graphic designer per il film Netflix <em>Il Falsario</em>
-            e la copertina di <em>Taxi sulla Luna</em> di Tony Effe.
-          </p>
-          <p class="person__links">
-            <a href="https://www.instagram.com/amaro666_/" target="_blank" rel="noopener">Instagram</a>
-            <a href="https://www.instagram.com/carammello.design/" target="_blank" rel="noopener">Carammello Design</a>
-          </p>
-        </li>
-        <li class="person">
-          <div class="person__photo" aria-hidden="true"></div>
-          <h3 class="person__name">Walid Husein</h3>
-          <p class="person__role">Ruolo</p>
-          <p class="person__bio">Bio in arrivo.</p>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <footer class="site-footer">
-    <p>
-      coded with <span aria-label="love">&hearts;</span> by
-      <a href="https://github.com/emiliopalmerini" target="_blank" rel="noopener">github.com/emiliopalmerini</a>
-    </p>
-  </footer>
-</body>
+    <footer class="site-footer">
+      <p>
+        coded with <span aria-label="love">&hearts;</span> by
+        <a
+          href="https://github.com/emiliopalmerini"
+          target="_blank"
+          rel="noopener"
+          >github.com/emiliopalmerini</a
+        >
+      </p>
+    </footer>
+  </body>
 </html>

@@ -10,6 +10,23 @@
   --font-body: "Lora", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
 }
 
+.skip-link {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 10;
+  padding: 0.5rem 0.75rem;
+  background: var(--ink);
+  color: var(--bg-deep);
+  border-radius: 2px;
+  transform: translateY(-150%);
+  transition: transform 0.15s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -47,6 +64,12 @@ h1, h2, h3 {
 
 a { color: var(--accent-hot); text-decoration: none; }
 a:hover { color: var(--ink); }
+a:focus-visible,
+button:focus-visible,
+iframe:focus-visible {
+  outline: 3px solid var(--accent-hot);
+  outline-offset: 4px;
+}
 
 .hero {
   position: relative;
@@ -54,12 +77,8 @@ a:hover { color: var(--ink); }
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: clamp(260px, 34vw, 440px) 1.5rem 4rem;
+  padding: clamp(1.5rem, 4vw, 3rem) 1.5rem 4rem;
   background-color: var(--bg);
-  background-image: url("/static/img/cuorpugnale_logotipo.jpg");
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-size: min(92vw, 880px) auto;
   overflow: hidden;
 }
 
@@ -77,6 +96,13 @@ a:hover { color: var(--ink); }
   max-width: 720px;
   text-align: center;
   text-shadow: 0 2px 12px var(--shadow);
+}
+
+.hero__brand {
+  display: block;
+  width: min(92vw, 880px);
+  height: auto;
+  margin: 0 auto clamp(1.5rem, 4vw, 2.5rem);
 }
 
 .hero__title {
@@ -133,6 +159,7 @@ a:hover { color: var(--ink); }
 }
 
 .btn:hover { transform: translateY(-1px); }
+.btn:focus-visible { transform: translateY(-1px); }
 
 .btn--primary {
   background: var(--accent);
@@ -215,7 +242,7 @@ a:hover { color: var(--ink); }
 }
 
 @media (max-width: 600px) {
-  .hero { padding: clamp(180px, 48vw, 280px) 1rem 3rem; }
+  .hero { padding: 1rem 1rem 3rem; }
   .btn { width: 100%; }
   .countdown__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
@@ -243,6 +270,11 @@ a:hover { color: var(--ink); }
   background: rgba(235, 164, 2, 0.2);
 }
 
+.hero__scroll:focus-visible {
+  color: var(--ink);
+  background: rgba(235, 164, 2, 0.2);
+}
+
 @keyframes hero-bounce {
   0%, 100% { transform: translate(-50%, 0); }
   50%      { transform: translate(-50%, 8px); }
@@ -250,6 +282,14 @@ a:hover { color: var(--ink); }
 
 @media (prefers-reduced-motion: reduce) {
   .hero__scroll { animation: none; }
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
 
 .about {
