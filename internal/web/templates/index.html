@@ -32,11 +32,14 @@
       type="image/svg+xml"
       href="/static/img/cuorpugnale_marchio.svg"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Lora:ital,wght@0,400..600;1,400..600&display=swap"
+      rel="preload"
+      as="image"
+      href="/static/img/cuorpugnale_logotipo-960.avif"
+      imagesrcset="/static/img/cuorpugnale_logotipo-640.avif 640w, /static/img/cuorpugnale_logotipo-960.avif 960w"
+      imagesizes="(max-width: 956px) 92vw, 880px"
+      type="image/avif"
+      fetchpriority="high"
     />
     <link rel="stylesheet" href="/static/css/style.css" />
   </head>
@@ -45,14 +48,33 @@
     <main class="hero" aria-labelledby="page-title">
       <div class="hero__overlay"></div>
       <div class="hero__content">
-        <img
-          class="hero__brand"
-          src="/static/img/cuorpugnale_logotipo.jpg"
-          alt="Cuorpugnale"
-          width="880"
-          height="495"
-          fetchpriority="high"
-        />
+        <picture class="hero__brand-picture">
+          <source
+            type="image/avif"
+            srcset="
+              /static/img/cuorpugnale_logotipo-640.avif 640w,
+              /static/img/cuorpugnale_logotipo-960.avif 960w
+            "
+            sizes="(max-width: 956px) 92vw, 880px"
+          />
+          <source
+            type="image/webp"
+            srcset="
+              /static/img/cuorpugnale_logotipo-640.webp 640w,
+              /static/img/cuorpugnale_logotipo-960.webp 960w
+            "
+            sizes="(max-width: 956px) 92vw, 880px"
+          />
+          <img
+            class="hero__brand"
+            src="/static/img/cuorpugnale_logotipo-960.jpg"
+            alt="Cuorpugnale"
+            width="960"
+            height="414"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </picture>
         <h1 id="page-title" class="visually-hidden">
           Cuorpugnale - Actual Play
         </h1>

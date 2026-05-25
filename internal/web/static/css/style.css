@@ -6,8 +6,8 @@
   --accent: #eba402;
   --accent-hot: #ffbf2e;
   --shadow: rgba(0, 0, 0, 0.5);
-  --font-display: "Playfair Display", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-  --font-body: "Lora", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-body: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
 }
 
 .skip-link {
@@ -96,12 +96,17 @@ iframe:focus-visible {
   text-shadow: 0 2px 12px var(--shadow);
 }
 
-.hero__brand {
+.hero__brand-picture {
   display: block;
   width: min(92vw, 880px);
-  height: auto;
   margin: 0 auto clamp(1.5rem, 4vw, 2.5rem);
   transform: translateX(-1.6%);
+}
+
+.hero__brand {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .hero__title {
