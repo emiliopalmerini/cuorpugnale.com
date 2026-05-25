@@ -19,12 +19,16 @@ var trailerLaunch = time.Date(2026, 5, 26, 10, 0, 0, 0, time.FixedZone("CEST", 2
 
 const siteURL = "https://cuorpugnale.com"
 const defaultSpotifyURL = "https://open.spotify.com/search/Cuorpugnale"
+const youtubeURL = "https://youtube.com/@cuorpugnale?si=GMnp_eG1ujakmclG"
+const instagramURL = "https://www.instagram.com/cuorpugnale"
 
 type indexData struct {
 	Launched     bool
 	LaunchUnixMs int64
 	SpotifyEmbed string
 	SpotifyURL   string
+	YouTubeURL   string
+	InstagramURL string
 	SiteURL      string
 	OGImageURL   string
 }
@@ -63,6 +67,8 @@ func (s *Server) Handler() http.Handler {
 			LaunchUnixMs: trailerLaunch.UnixMilli(),
 			SpotifyEmbed: "",
 			SpotifyURL:   spotifyURL(),
+			YouTubeURL:   youtubeURL,
+			InstagramURL: instagramURL,
 			SiteURL:      siteURL,
 			OGImageURL:   siteURL + "/static/img/cuorpugnale_logotipo.jpg",
 		}

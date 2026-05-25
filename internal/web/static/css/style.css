@@ -232,8 +232,28 @@ iframe:focus-visible {
   box-shadow: 0 4px 16px var(--shadow);
 }
 
+.hero__socials {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem 1.15rem;
+  margin: 0 0 1.75rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.hero__socials a {
+  color: var(--ink);
+  border-bottom: 1px dotted rgba(235, 164, 2, 0.65);
+}
+
+.hero__socials a:hover {
+  color: var(--accent-hot);
+}
+
 .hero__footer {
-  margin-top: 2.5rem;
+  margin-top: 0;
   font-size: 0.85rem;
   color: var(--ink-dim);
   letter-spacing: 0.1em;
