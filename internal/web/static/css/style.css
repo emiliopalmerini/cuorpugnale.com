@@ -336,6 +336,7 @@ iframe:focus-visible {
 }
 
 .person__photo {
+  display: block;
   width: 120px;
   height: 120px;
   margin: 0 auto 1rem;
@@ -344,6 +345,7 @@ iframe:focus-visible {
     radial-gradient(circle at 30% 30%, rgba(235, 164, 2, 0.3), rgba(46, 20, 102, 0.7) 70%),
     var(--bg-deep);
   border: 1px solid rgba(235, 164, 2, 0.4);
+  object-fit: cover;
 }
 
 .person__name {
