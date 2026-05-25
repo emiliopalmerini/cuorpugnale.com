@@ -60,8 +60,8 @@
           Un podcast actual play di Walid Husein e Gianluca Danaro
         </p>
         <p class="hero__lede">
-          Una campagna scritta con il cuore, registrata al tavolo e giocata con
-          il nuovo sistema di
+          Avventure e musiche originali, narrate e giocate al tavolo utilizzando
+          il sistema del gioco di ruolo
           <strong>Daggerheart</strong>.
         </p>
 
@@ -69,7 +69,7 @@
           {{if .Launched}} {{if .SpotifyEmbed}}
           <iframe
             class="hero__spotify"
-            title="Trailer di Cuorpugnale su Spotify"
+            title="Teaser trailer di Cuorpugnale su Spotify"
             src="{{.SpotifyEmbed}}"
             width="100%"
             height="232"
@@ -89,11 +89,11 @@
           <div
             class="countdown"
             data-target="{{.LaunchUnixMs}}"
-            aria-label="Tempo rimanente al trailer"
+            aria-label="Tempo rimanente al teaser trailer"
             aria-live="off"
             role="timer"
           >
-            <p class="countdown__label">Il trailer arriva tra</p>
+            <p class="countdown__label">Il teaser trailer arriva tra</p>
             <div class="countdown__grid">
               <div class="countdown__cell">
                 <span class="countdown__num" data-unit="days">--</span
@@ -146,7 +146,9 @@
           {{end}}
         </div>
 
-        <p class="hero__footer">Presto per le vostre orecchie.</p>
+        <p class="hero__footer">
+          Presto ovunque amiate ascoltare i vostri podcast
+        </p>
       </div>
       <a
         class="hero__scroll"
