@@ -94,6 +94,30 @@ func TestHomePageShowsCountdownBeforeLaunch(t *testing.T) {
 	}
 }
 
+func TestHomePageEmbedsSpotifyShowAfterLaunch(t *testing.T) {
+	t.Setenv("TRAILER_LAUNCH_AT", time.Now().Add(-time.Hour).Format(time.RFC3339))
+
+	rec := renderHome(t)
+
+	if rec.Code != http.StatusOK {
+		t.Fatalf("status = %d, want %d", rec.Code, http.StatusOK)
+	}
+
+	body := rec.Body.String()
+	for _, snippet := range []string{
+		`data-testid="embed-iframe"`,
+		`class="hero__spotify"`,
+		`src="https://open.spotify.com/embed/show/033nh6SpB5aFTDuQ6FMkSI?utm_source=generator"`,
+		`height="352"`,
+		`allowfullscreen`,
+		`allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"`,
+	} {
+		if !strings.Contains(body, snippet) {
+			t.Errorf("home page does not contain %q", snippet)
+		}
+	}
+}
+
 func TestTrailerLaunchTimeCanUseAbsoluteOverride(t *testing.T) {
 	now := time.Date(2026, 5, 26, 8, 0, 0, 0, time.UTC)
 	want := time.Date(2026, 5, 26, 10, 15, 0, 0, time.UTC)

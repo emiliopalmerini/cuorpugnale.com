@@ -19,6 +19,7 @@ var defaultTrailerLaunch = time.Date(2026, 5, 26, 10, 0, 0, 0, time.FixedZone("C
 
 const siteURL = "https://cuorpugnale.com"
 const defaultSpotifyURL = "https://open.spotify.com/search/Cuorpugnale"
+const spotifyEmbedURL = "https://open.spotify.com/embed/show/033nh6SpB5aFTDuQ6FMkSI?utm_source=generator"
 const instagramURL = "https://www.instagram.com/cuorpugnale"
 
 type indexData struct {
@@ -68,7 +69,7 @@ func (s *Server) Handler() http.Handler {
 		data := indexData{
 			Launched:     now.After(s.trailerLaunch),
 			LaunchUnixMs: s.trailerLaunch.UnixMilli(),
-			SpotifyEmbed: "",
+			SpotifyEmbed: spotifyEmbedURL,
 			SpotifyURL:   spotifyURL(),
 			InstagramURL: instagramURL,
 			SiteURL:      siteURL,

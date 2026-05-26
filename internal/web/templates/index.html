@@ -90,12 +90,15 @@
         <div class="hero__cta">
           {{if .Launched}} {{if .SpotifyEmbed}}
           <iframe
+            data-testid="embed-iframe"
             class="hero__spotify"
             title="Teaser trailer di Cuorpugnale su Spotify"
             src="{{.SpotifyEmbed}}"
             width="100%"
-            height="232"
-            allow="encrypted-media"
+            height="352"
+            frameborder="0"
+            allowfullscreen
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
             loading="lazy"
           ></iframe>
           {{else}}
