@@ -433,6 +433,7 @@ iframe:focus-visible {
 }
 
 .site-footer p { margin: 0; }
+.site-footer p + p { margin-top: 0.35rem; }
 .site-footer span[aria-label="love"] { color: var(--accent-hot); }
 .site-footer a { color: var(--ink); border-bottom: 1px dotted rgba(235, 164, 2, 0.5); }
 .site-footer a:hover { color: var(--accent-hot); }
