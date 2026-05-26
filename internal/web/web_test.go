@@ -17,12 +17,29 @@ func TestHomePageRendersSocialLinks(t *testing.T) {
 
 	body := rec.Body.String()
 	for _, link := range []string{
-		"https://youtube.com/@cuorpugnale?si=GMnp_eG1ujakmclG",
+		"https://open.spotify.com/search/Cuorpugnale",
 		"https://www.instagram.com/cuorpugnale",
 	} {
 		if !strings.Contains(body, link) {
 			t.Errorf("home page does not contain %q", link)
 		}
+	}
+	if strings.Contains(body, `>YouTube</a>`) {
+		t.Errorf("home page contains YouTube social link, want Spotify")
+	}
+}
+
+func TestHomePageCanOverrideSpotifyLink(t *testing.T) {
+	t.Setenv("SPOTIFY_URL", "https://open.spotify.com/show/example")
+
+	rec := renderHome(t)
+
+	if rec.Code != http.StatusOK {
+		t.Fatalf("status = %d, want %d", rec.Code, http.StatusOK)
+	}
+
+	if !strings.Contains(rec.Body.String(), "https://open.spotify.com/show/example") {
+		t.Errorf("home page does not contain overridden Spotify URL")
 	}
 }
 
@@ -54,11 +71,7 @@ func TestHomePageUsesOptimizedHeroImage(t *testing.T) {
 }
 
 func TestHomePageEmbedsLatestYouTubeVideoAfterLaunch(t *testing.T) {
-	oldLaunch := trailerLaunch
-	trailerLaunch = time.Now().Add(-time.Hour)
-	t.Cleanup(func() {
-		trailerLaunch = oldLaunch
-	})
+	t.Setenv("TRAILER_LAUNCH_AT", time.Now().Add(-time.Hour).Format(time.RFC3339))
 
 	rec := renderHome(t)
 
@@ -76,6 +89,54 @@ func TestHomePageEmbedsLatestYouTubeVideoAfterLaunch(t *testing.T) {
 		if !strings.Contains(body, snippet) {
 			t.Errorf("home page does not contain %q", snippet)
 		}
+	}
+}
+
+func TestHomePageShowsCountdownBeforeLaunch(t *testing.T) {
+	t.Setenv("TRAILER_LAUNCH_DELAY", "10s")
+
+	rec := renderHome(t)
+
+	if rec.Code != http.StatusOK {
+		t.Fatalf("status = %d, want %d", rec.Code, http.StatusOK)
+	}
+
+	body := rec.Body.String()
+	for _, snippet := range []string{
+		`class="countdown"`,
+		`Il teaser trailer arriva tra`,
+		`data-target="`,
+	} {
+		if !strings.Contains(body, snippet) {
+			t.Errorf("home page does not contain %q", snippet)
+		}
+	}
+	if strings.Contains(body, `class="hero__video"`) {
+		t.Errorf("home page contains launched YouTube embed during countdown")
+	}
+}
+
+func TestTrailerLaunchTimeCanUseAbsoluteOverride(t *testing.T) {
+	now := time.Date(2026, 5, 26, 8, 0, 0, 0, time.UTC)
+	want := time.Date(2026, 5, 26, 10, 15, 0, 0, time.UTC)
+	t.Setenv("TRAILER_LAUNCH_AT", want.Format(time.RFC3339))
+
+	got := trailerLaunchTime(now)
+
+	if !got.Equal(want) {
+		t.Fatalf("trailerLaunchTime() = %v, want %v", got, want)
+	}
+}
+
+func TestTrailerLaunchTimeCanUseDelayOverride(t *testing.T) {
+	now := time.Date(2026, 5, 26, 8, 0, 0, 0, time.UTC)
+	t.Setenv("TRAILER_LAUNCH_DELAY", "10s")
+
+	got := trailerLaunchTime(now)
+	want := now.Add(10 * time.Second)
+
+	if !got.Equal(want) {
+		t.Fatalf("trailerLaunchTime() = %v, want %v", got, want)
 	}
 }
 

@@ -51,6 +51,13 @@ run: build ## Build and run the server binary
 	@echo "Starting server..."
 	@$(SERVER)
 
+COUNTDOWN_DELAY ?= 10s
+
+.PHONY: run-countdown
+run-countdown: build ## Run locally with a countdown, defaulting to 10 seconds
+	@echo "Starting server with a $(COUNTDOWN_DELAY) countdown..."
+	@TRAILER_LAUNCH_DELAY=$(COUNTDOWN_DELAY) $(SERVER)
+
 # ==============================================================================
 # DEVELOPMENT (hot-reload with air)
 # ==============================================================================

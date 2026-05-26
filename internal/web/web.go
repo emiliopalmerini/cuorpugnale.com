@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"io/fs"
 	"net/http"
+	"os"
 	"time"
 )
 
@@ -14,25 +15,26 @@ var templatesFS embed.FS
 //go:embed static
 var staticFS embed.FS
 
-var trailerLaunch = time.Date(2026, 5, 26, 10, 0, 0, 0, time.FixedZone("CEST", 2*60*60))
+var defaultTrailerLaunch = time.Date(2026, 5, 26, 10, 0, 0, 0, time.FixedZone("CEST", 2*60*60))
 
 const siteURL = "https://cuorpugnale.com"
-const youtubeURL = "https://youtube.com/@cuorpugnale?si=GMnp_eG1ujakmclG"
+const defaultSpotifyURL = "https://open.spotify.com/search/Cuorpugnale"
 const youtubeLatestEmbed = "https://www.youtube-nocookie.com/embed/videoseries?list=UU0hhZyFibLeVk9KDIatuIag&rel=0"
 const instagramURL = "https://www.instagram.com/cuorpugnale"
 
 type indexData struct {
 	Launched     bool
 	LaunchUnixMs int64
+	SpotifyURL   string
 	YouTubeEmbed string
-	YouTubeURL   string
 	InstagramURL string
 	SiteURL      string
 	OGImageURL   string
 }
 
 type Server struct {
-	tmpl *template.Template
+	tmpl          *template.Template
+	trailerLaunch time.Time
 }
 
 func New() (*Server, error) {
@@ -40,7 +42,10 @@ func New() (*Server, error) {
 	if err != nil {
 		return nil, err
 	}
-	return &Server{tmpl: tmpl}, nil
+	return &Server{
+		tmpl:          tmpl,
+		trailerLaunch: trailerLaunchTime(time.Now()),
+	}, nil
 }
 
 func (s *Server) Handler() http.Handler {
@@ -58,13 +63,14 @@ func (s *Server) Handler() http.Handler {
 	})
 
 	mux.HandleFunc("GET /{$}", func(w http.ResponseWriter, r *http.Request) {
+		now := time.Now()
 		w.Header().Set("Content-Type", "text/html; charset=utf-8")
 		w.Header().Set("Cache-Control", "no-cache")
 		data := indexData{
-			Launched:     time.Now().After(trailerLaunch),
-			LaunchUnixMs: trailerLaunch.UnixMilli(),
+			Launched:     now.After(s.trailerLaunch),
+			LaunchUnixMs: s.trailerLaunch.UnixMilli(),
+			SpotifyURL:   spotifyURL(),
 			YouTubeEmbed: youtubeLatestEmbed,
-			YouTubeURL:   youtubeURL,
 			InstagramURL: instagramURL,
 			SiteURL:      siteURL,
 			OGImageURL:   siteURL + "/static/img/cuorpugnale_logotipo.jpg",
@@ -85,6 +91,31 @@ func securityHeaders(next http.Handler) http.Handler {
 		w.Header().Set("X-Frame-Options", "DENY")
 		next.ServeHTTP(w, r)
 	})
+}
+
+func trailerLaunchTime(now time.Time) time.Time {
+	if delay := os.Getenv("TRAILER_LAUNCH_DELAY"); delay != "" {
+		duration, err := time.ParseDuration(delay)
+		if err == nil && duration > 0 {
+			return now.Add(duration)
+		}
+	}
+
+	if value := os.Getenv("TRAILER_LAUNCH_AT"); value != "" {
+		launch, err := time.Parse(time.RFC3339, value)
+		if err == nil {
+			return launch
+		}
+	}
+
+	return defaultTrailerLaunch
+}
+
+func spotifyURL() string {
+	if url := os.Getenv("SPOTIFY_URL"); url != "" {
+		return url
+	}
+	return defaultSpotifyURL
 }
 
 func cacheStatic(next http.Handler) http.Handler {
