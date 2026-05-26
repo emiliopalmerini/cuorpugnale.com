@@ -229,13 +229,11 @@ iframe:focus-visible {
   color: var(--ink-dim);
 }
 
-.hero__video {
+.hero__spotify {
   width: 100%;
   max-width: 32rem;
-  aspect-ratio: 16 / 9;
-  height: auto;
   border: 0;
-  border-radius: 4px;
+  border-radius: 12px;
   box-shadow: 0 4px 16px var(--shadow);
 }
 

@@ -70,28 +70,6 @@ func TestHomePageUsesOptimizedHeroImage(t *testing.T) {
 	}
 }
 
-func TestHomePageEmbedsLatestYouTubeVideoAfterLaunch(t *testing.T) {
-	t.Setenv("TRAILER_LAUNCH_AT", time.Now().Add(-time.Hour).Format(time.RFC3339))
-
-	rec := renderHome(t)
-
-	if rec.Code != http.StatusOK {
-		t.Fatalf("status = %d, want %d", rec.Code, http.StatusOK)
-	}
-
-	body := rec.Body.String()
-	for _, snippet := range []string{
-		`class="hero__video"`,
-		`title="Ultimo video di Cuorpugnale su YouTube"`,
-		`src="https://www.youtube-nocookie.com/embed/videoseries?list=UU0hhZyFibLeVk9KDIatuIag&amp;rel=0"`,
-		`allowfullscreen`,
-	} {
-		if !strings.Contains(body, snippet) {
-			t.Errorf("home page does not contain %q", snippet)
-		}
-	}
-}
-
 func TestHomePageShowsCountdownBeforeLaunch(t *testing.T) {
 	t.Setenv("TRAILER_LAUNCH_DELAY", "10s")
 
@@ -207,26 +185,6 @@ func TestSecurityPolicyDoesNotAllowExternalFonts(t *testing.T) {
 		if strings.Contains(csp, blocked) {
 			t.Errorf("Content-Security-Policy contains external font source %q", blocked)
 		}
-	}
-}
-
-func TestSecurityPolicyAllowsYouTubeEmbed(t *testing.T) {
-	server, err := New()
-	if err != nil {
-		t.Fatalf("New() error = %v", err)
-	}
-
-	req := httptest.NewRequest(http.MethodGet, "/", nil)
-	rec := httptest.NewRecorder()
-
-	server.Handler().ServeHTTP(rec, req)
-
-	csp := rec.Header().Get("Content-Security-Policy")
-	if !strings.Contains(csp, "frame-src https://www.youtube-nocookie.com") {
-		t.Errorf("Content-Security-Policy = %q, want YouTube no-cookie frame source", csp)
-	}
-	if strings.Contains(csp, "https://open.spotify.com") {
-		t.Errorf("Content-Security-Policy contains old Spotify frame source")
 	}
 }
 

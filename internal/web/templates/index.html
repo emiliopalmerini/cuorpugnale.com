@@ -88,19 +88,26 @@
         </p>
 
         <div class="hero__cta">
-          {{if .Launched}}
+          {{if .Launched}} {{if .SpotifyEmbed}}
           <iframe
-            class="hero__video"
-            title="Ultimo video di Cuorpugnale su YouTube"
-            src="{{.YouTubeEmbed}}"
+            class="hero__spotify"
+            title="Teaser trailer di Cuorpugnale su Spotify"
+            src="{{.SpotifyEmbed}}"
             width="100%"
-            height="288"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
+            height="232"
+            allow="encrypted-media"
             loading="lazy"
           ></iframe>
           {{else}}
+          <a
+            class="btn btn--primary"
+            href="{{.SpotifyURL}}"
+            target="_blank"
+            rel="noopener"
+          >
+            Apri Cuorpugnale su Spotify
+          </a>
+          {{end}} {{else}}
           <div
             class="countdown"
             data-target="{{.LaunchUnixMs}}"
