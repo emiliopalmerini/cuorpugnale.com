@@ -20,6 +20,7 @@ var defaultTrailerLaunch = time.Date(2026, 5, 26, 10, 0, 0, 0, time.FixedZone("C
 const siteURL = "https://cuorpugnale.com"
 const defaultSpotifyURL = "https://open.spotify.com/search/Cuorpugnale"
 const spotifyEmbedURL = "https://open.spotify.com/embed/show/033nh6SpB5aFTDuQ6FMkSI?utm_source=generator"
+const youtubeURL = "https://youtube.com/@cuorpugnale?si=GMnp_eG1ujakmclG"
 const instagramURL = "https://www.instagram.com/cuorpugnale"
 
 type indexData struct {
@@ -27,6 +28,7 @@ type indexData struct {
 	LaunchUnixMs int64
 	SpotifyEmbed string
 	SpotifyURL   string
+	YouTubeURL   string
 	InstagramURL string
 	SiteURL      string
 	OGImageURL   string
@@ -71,6 +73,7 @@ func (s *Server) Handler() http.Handler {
 			LaunchUnixMs: s.trailerLaunch.UnixMilli(),
 			SpotifyEmbed: spotifyEmbedURL,
 			SpotifyURL:   spotifyURL(),
+			YouTubeURL:   youtubeURL,
 			InstagramURL: instagramURL,
 			SiteURL:      siteURL,
 			OGImageURL:   siteURL + "/static/img/cuorpugnale_logotipo.jpg",

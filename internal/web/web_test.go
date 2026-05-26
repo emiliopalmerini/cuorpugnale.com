@@ -17,29 +17,23 @@ func TestHomePageRendersSocialLinks(t *testing.T) {
 
 	body := rec.Body.String()
 	for _, link := range []string{
-		"https://open.spotify.com/search/Cuorpugnale",
+		"https://youtube.com/@cuorpugnale?si=GMnp_eG1ujakmclG",
 		"https://www.instagram.com/cuorpugnale",
 	} {
 		if !strings.Contains(body, link) {
 			t.Errorf("home page does not contain %q", link)
 		}
 	}
-	if strings.Contains(body, `>YouTube</a>`) {
-		t.Errorf("home page contains YouTube social link, want Spotify")
+	if strings.Contains(body, `>Spotify</a>`) {
+		t.Errorf("home page contains Spotify social link, want YouTube")
 	}
 }
 
 func TestHomePageCanOverrideSpotifyLink(t *testing.T) {
 	t.Setenv("SPOTIFY_URL", "https://open.spotify.com/show/example")
 
-	rec := renderHome(t)
-
-	if rec.Code != http.StatusOK {
-		t.Fatalf("status = %d, want %d", rec.Code, http.StatusOK)
-	}
-
-	if !strings.Contains(rec.Body.String(), "https://open.spotify.com/show/example") {
-		t.Errorf("home page does not contain overridden Spotify URL")
+	if got := spotifyURL(); got != "https://open.spotify.com/show/example" {
+		t.Errorf("spotifyURL() = %q, want overridden Spotify URL", got)
 	}
 }
 
